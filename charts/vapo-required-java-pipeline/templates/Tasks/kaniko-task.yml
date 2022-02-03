@@ -3,6 +3,8 @@ kind: Task
 metadata:
   name: 4-kaniko-task
   namespace: {{ .Values.Pipeline.Namespace }}
+  labels:
+      app: kaniko
   annotations:
     app.kubernetes.io/managed-by: helm
 spec:
