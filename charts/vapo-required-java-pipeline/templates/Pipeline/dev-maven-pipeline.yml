@@ -7,11 +7,6 @@ metadata:
   annotations:
     app.kubernetes.io/managed-by: helm
 spec:
-  params:
-    - name: pathToDockerFile
-      type: string
-      description: The path to the dockerfile to build
-      default: $(resources.inputs.git-project-resource.path)/build/2201-vic-dev
   resources:
     # Identify required Git Resource for Pipeline
     - name: source-code
@@ -81,6 +76,18 @@ spec:
     # 8 - Deploy the Stack to Environment
     - name: deploy-stack
       params:
+        - name: working-directory
+          value: /workspace/source
+        - name: oc-template
+          value: /build/2201-vic-dev-template
+        - name: project-name
+          value: vapo-demo
+        - name: app-name
+          value: vic
+        - name: branch-name
+          value: vapo
+        - name: git-url
+          value: 'https://github.com/department-of-veterans-affairs/vapo-vic.git'
       taskRef:
         name: 8-deployment
       runAfter:
