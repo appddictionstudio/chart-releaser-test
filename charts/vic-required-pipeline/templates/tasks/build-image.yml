@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: 4-buildah-task
+  name: {{ .Values.Tasks.buildImageTaskName }}
   namespace: {{ .Values.Pipeline.Namespace }}
 spec:
   params:
@@ -50,7 +50,7 @@ spec:
       description: Identifies the location of the source code within the workspace
       name: WORKING_DIRECTORY
       type: string
-    - default: 'quay.io/ksummersill2/trivy:0.17.2'
+    - default: '{{ .Values.Tasks.trivyImage }}'
       description: Identifes the Trivy Image to use for scanning the OCI spec of the image
       name: TRIVY_IMAGE
       type: string
