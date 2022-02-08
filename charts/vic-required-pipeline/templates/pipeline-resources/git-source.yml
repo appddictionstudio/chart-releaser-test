@@ -1,1 +1,17 @@
 # Pipeline Resource utilize for identifying the location for Git Repository.
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: source-code
+  namespace: {{ .Values.Pipeline.Namespace }}
+  annotations:
+    app.kubernetes.io/managed-by: helm
+spec:
+  type: git
+  params:
+  - name: url
+    value: {{ .Values.PipelineResource.mainSourceCode }}
+  - name: revision
+    value: {{ .Values.PipelineResource.mainBranch }}
+  - name: sslVerify
+    value: "false"
