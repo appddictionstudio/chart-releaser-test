@@ -8,3 +8,4 @@ PipelineResource:
   
 Tasks:
   buildImageTaskName: vapo-buildah-task
+  trivyImage: quay.io/ksummersill2/trivy:0.17.2
